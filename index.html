@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信付费进群聊 & 红娘牵线服务</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-heart"></i>
+                <span>缘来是你</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#groups">付费群聊</a></li>
+                <li><a href="#matchmaking">红娘牵线</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>专业微信付费服务</h1>
+            <p>高质量社交圈子 · 专业红娘牵线 · 安全可靠支付</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToSection('groups')">加入付费群聊</button>
+                <button class="btn-secondary" onclick="scrollToSection('matchmaking')">红娘牵线服务</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-users"></i>
+        </div>
+    </section>
+
+    <!-- 付费群聊服务 -->
+    <section id="groups" class="services">
+        <div class="container">
+            <h2>微信付费进群聊</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>学习交流群</h3>
+                    <p class="price">¥99/月</p>
+                    <ul>
+                        <li>专业学习资料分享</li>
+                        <li>名师在线指导</li>
+                        <li>学习伙伴互助</li>
+                    </ul>
+                    <button class="btn-buy" onclick="initiatePayment('学习交流群', 99)">立即加入</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>商务合作群</h3>
+                    <p class="price">¥199/月</p>
+                    <ul>
+                        <li>高端商务人脉</li>
+                        <li>项目合作机会</li>
+                        <li>资源共享平台</li>
+                    </ul>
+                    <button class="btn-buy" onclick="initiatePayment('商务合作群', 199)">立即加入</button>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>情感交流群</h3>
+                    <p class="price">¥149/月</p>
+                    <ul>
+                        <li>情感问题解答</li>
+                        <li>心理专家指导</li>
+                        <li>温暖互助社区</li>
+                    </ul>
+                    <button class="btn-buy" onclick="initiatePayment('情感交流群', 149)">立即加入</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 红娘牵线服务 -->
+    <section id="matchmaking" class="matchmaking">
+        <div class="container">
+            <h2>专业红娘牵线服务</h2>
+            <div class="matchmaking-content">
+                <div class="matchmaking-info">
+                    <h3>找到你的缘分</h3>
+                    <p>我们拥有专业的红娘团队，为您提供个性化的牵线服务，帮助您找到理想的另一半。</p>
+                    
+                    <div class="service-options">
+                        <div class="option">
+                            <h4>基础牵线服务</h4>
+                            <p class="price">¥299</p>
+                            <ul>
+                                <li>专业红娘一对一咨询</li>
+                                <li>3次匹配推荐</li>
+                                <li>基础沟通指导</li>
+                            </ul>
+                            <button class="btn-buy" onclick="initiatePayment('基础牵线服务', 299)">选择服务</button>
+                        </div>
+                        
+                        <div class="option">
+                            <h4>高级牵线服务</h4>
+                            <p class="price">¥599</p>
+                            <ul>
+                                <li>资深红娘全程服务</li>
+                                <li>无限次匹配推荐</li>
+                                <li>深度情感指导</li>
+                                <li>约会安排协助</li>
+                            </ul>
+                            <button class="btn-buy" onclick="initiatePayment('高级牵线服务', 599)">选择服务</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="matchmaking-image">
+                    <i class="fas fa-ring"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支付弹窗 -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3><i class="fas fa-credit-card"></i> 确认支付</h3>
+            <div class="payment-info">
+                <div class="payment-item">
+                    <span class="label">服务项目：</span>
+                    <span id="paymentService" class="value"></span>
+                </div>
+                <div class="payment-item">
+                    <span class="label">支付金额：</span>
+                    <span class="value">¥<span id="paymentAmount"></span></span>
+                </div>
+                <div class="payment-item">
+                    <span class="label">订单编号：</span>
+                    <span id="paymentOrderNo" class="value"></span>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <h4>选择支付方式</h4>
+                <div class="method-options">
+                    <div class="method-option active" data-type="alipay">
+                        <i class="fab fa-alipay"></i>
+                        <span>支付宝支付</span>
+                    </div>
+                    <div class="method-option" data-type="wxpay">
+                        <i class="fab fa-weixin"></i>
+                        <span>微信支付</span>
+                    </div>
+                    <div class="method-option" data-type="bank">
+                        <i class="fas fa-university"></i>
+                        <span>银行卡支付</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-actions">
+                <button class="btn-cancel" onclick="closePaymentModal()">取消</button>
+                <button class="btn-pay" onclick="processPayment()">
+                    <i class="fas fa-lock"></i>
+                    安全支付
+                </button>
+            </div>
+            
+            <div class="payment-security">
+                <i class="fas fa-shield-alt"></i>
+                <span>支付安全由支付宝/微信/银行保障</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <p><i class="fas fa-phone"></i> 客服热线：400-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> 邮箱：service@yuanlai.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>服务保障</h4>
+                    <p>安全支付 · 隐私保护 · 售后服务</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 缘来是你服务平台. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

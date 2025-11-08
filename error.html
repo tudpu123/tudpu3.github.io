@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付失败 - 缘来是你服务平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);">
+    <div class="error-container">
+        <div class="error-card">
+            <div class="error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h1>支付失败</h1>
+            <p>很抱歉，支付过程中出现了问题。</p>
+            <div class="error-details">
+                <p id="errorMessage">请检查您的支付信息或稍后重试</p>
+            </div>
+            <div class="error-actions">
+                <button class="btn-primary" onclick="retryPayment()">重新支付</button>
+                <button class="btn-secondary" onclick="goHome()">返回首页</button>
+                <button class="btn-secondary" onclick="contactSupport()">联系客服</button>
+            </div>
+            <div class="error-tips">
+                <h3>常见问题解决方案：</h3>
+                <ul>
+                    <li>检查网络连接是否正常</li>
+                    <li>确认支付账户余额充足</li>
+                    <li>验证支付密码是否正确</li>
+                    <li>如问题持续，请联系客服</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 从URL参数获取错误信息
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMsg = urlParams.get('msg') || '支付过程中出现了问题，请稍后重试';
+        document.getElementById('errorMessage').textContent = errorMsg;
+        
+        function retryPayment() {
+            // 返回支付页面重新支付
+            window.history.back();
+        }
+        
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        
+        function contactSupport() {
+            window.location.href = 'tel:4001234567';
+        }
+    </script>
+
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .error-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        .error-card h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .error-card > p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .error-details {
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .error-details p {
+            margin: 0;
+            color: #d63031;
+            font-weight: bold;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .error-tips {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .error-tips h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .error-tips ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .error-tips li {
+            padding: 8px 0;
+            color: #666;
+        }
+        
+        .error-tips li:before {
+            content: "ℹ";
+            color: #74b9ff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 30px 20px;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+            }
+            
+            .error-icon {
+                font-size: 4rem;
+            }
+            
+            .error-card h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</body>
+</html>

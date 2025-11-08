@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付成功 - 缘来是你服务平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);">
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>支付成功！</h1>
+            <p>感谢您的购买，我们已经收到您的付款。</p>
+            <div class="success-details">
+                <p><strong>订单状态：</strong>已支付</p>
+                <p><strong>支付时间：</strong><span id="paymentTime"></span></p>
+                <p><strong>服务内容：</strong><span id="serviceName"></span></p>
+            </div>
+            <div class="success-actions">
+                <button class="btn-primary" onclick="goHome()">返回首页</button>
+                <button class="btn-secondary" onclick="contactSupport()">联系客服</button>
+            </div>
+            <div class="success-tips">
+                <h3>下一步操作：</h3>
+                <ul>
+                    <li>我们的客服将在24小时内联系您</li>
+                    <li>请保持微信畅通</li>
+                    <li>如有问题请及时联系客服</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 显示支付时间
+        document.getElementById('paymentTime').textContent = new Date().toLocaleString('zh-CN');
+        
+        // 从URL参数获取服务名称
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service') || '微信付费服务';
+        document.getElementById('serviceName').textContent = service;
+        
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+        
+        function contactSupport() {
+            window.location.href = 'tel:4001234567';
+        }
+    </script>
+
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: #4ecdc4;
+            margin-bottom: 20px;
+        }
+        
+        .success-card h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .success-card > p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .success-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .success-details p {
+            margin: 10px 0;
+            color: #333;
+        }
+        
+        .success-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .success-tips {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .success-tips h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .success-tips ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .success-tips li {
+            padding: 8px 0;
+            color: #666;
+        }
+        
+        .success-tips li:before {
+            content: "✓";
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .success-card {
+                padding: 30px 20px;
+            }
+            
+            .success-actions {
+                flex-direction: column;
+            }
+            
+            .success-icon {
+                font-size: 4rem;
+            }
+            
+            .success-card h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</body>
+</html>
